@@ -1,0 +1,32 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>M</title>
+</head>
+<script src="mainTablePort.js"></script>
+<body>
+<br/>
+<br/>
+<div id="elm-table-3">in not loaded</div>
+<br/>
+<br/>
+<input type="button" onclick="javascript:jsEvent(0)" value="Test 0"></input>
+<input type="button" onclick="javascript:jsEvent(1)" value="Test 1"></input>
+<input type="button" onclick="javascript:jsEvent(2)" value="Test 2"></input>
+<script>
+    var app = Elm.MainTablePort.init({
+        node: document.getElementById("elm-table-3")
+    });
+
+    app.ports.sendData.subscribe(function(data) {
+        alert("Data from Elm: " + data);
+    });
+
+    function jsEvent(idx){
+        app.ports.receiveData.send(idx);
+    }
+
+
+</script>
+</body>
+</html>
